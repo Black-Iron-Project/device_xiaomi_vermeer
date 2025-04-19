@@ -13,16 +13,13 @@ include device/xiaomi/sm8550-common/BoardConfigCommon.mk
 TARGET_SCREEN_DENSITY := 530
 TARGET_USE_YCRCB_CAMERA_ENCODE := true
 
-# Kernel Modules
-device_second_stage_modules := \
-    wl2866d.ko \
-    wl2868c.ko \
-    xiaomi_touch.ko \
-    goodix_ts.ko
-
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(addprefix $(KERNEL_PREBUILT_DIR)/vendor_dlkm/, $(device_second_stage_modules))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD += $(device_second_stage_modules)
-BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD += $(device_second_stage_modules)
+BOARD_VENDOR_KERNEL_MODULES_LOAD += \
+        aw882xx_dlkm.ko \
+	cs35l41_dlkm.ko \
+	goodix_fod.ko \
+	goodix_core.ko \
+        wl2868c.ko \
+        wl2866d.ko
 
 # OTA
 TARGET_OTA_ASSERT_DEVICE := vermeer
